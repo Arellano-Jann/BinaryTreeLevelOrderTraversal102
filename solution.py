@@ -4,34 +4,14 @@ class ListNode:
         self.val = val
         self.next = next
 
-
-def mergeTwoLists(list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-    true_list = ListNode(0)
-    current = true_list
-    while list1 and list2:
-        if list1.val > list2.val:
-            current.next = list2 # this is .next and not .val because .next is a List while val is just a value.
-            list2 = list2.next
-        else:
-            current.next = list1
-            list1 = list1.next
-        current = current.next
-    current.next = list1 or list2
-    return true_list.next
+def reverseList(head: Optional[ListNode]) -> Optional[ListNode]:
+    reversed1 = None
+    while head != None:
+        current = head.next # creates a new ListNode object with all elements but the first element of the list
+        head.next = reversed1 # isolates the first element of the List by replacing the next variable with the current reversed list (starting with None)
+        reversed1 = head # saves the current head to the current reversed list (because it's currently reversed lol)
+        head = current # makes the current head the rest of the objects not reversed yet and also makes sure that the current head is not None so it doesn't exit out.
+    return reversed1
 
 
 # recursive solution
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-def mergeTwoLists2( list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-    if list1 == None: return list2
-    if list2 == None: return list1
-    if list1.val < list2.val:
-        list1.next = mergeTwoLists2(list1.next, list2)
-        return list1
-    else:
-        list2.next = mergeTwoLists2(list1, list2.next)
-        return list2
