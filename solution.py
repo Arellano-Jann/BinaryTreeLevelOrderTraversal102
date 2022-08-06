@@ -1,20 +1,22 @@
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+def maxProfit(self, prices: List[int]) -> int:
+        sale, best = max(prices),0
+        for x in prices:
+            if x < sale: 
+                sale = x
+            price = x - sale
+            if price > best: 
+                best = price
+        return best
 
-def detectCycle( head: Optional[ListNode]) -> Optional[ListNode]:
-    slow = head
-    fast = head
-    while fast and fast.next:
-        slow = slow.next
-        fast = fast.next.next
-        if slow == fast: # needed after the moves because it's initially at the same position
-            slow2 = head
-            while slow != slow2: # floyds algorithm https://www.youtube.com/watch?v=LUm2ABqAs1w
-                slow = slow.next
-                slow2 = slow2.next
-            return slow
-    return None
-    
+
+
+def maxProfit2(self, prices: List[int]) -> int:
+    best_price = 0
+    sell_price = prices[-1] # last index bc it's the highest possible last value
+    for x in prices[::-1]: # has to be backwards bc sell_price is the last val
+            price = sell_price - x
+            if price > best_price: # saves the best possible price by taking the max
+                best_price = price
+            if x > sell_price: # saves the lowest possible sale price taking advantage of the fact that we want the highest sale value and the sale value is at the end.
+                sell_price = x
+    return best_price
