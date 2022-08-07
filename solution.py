@@ -34,8 +34,13 @@ def preorder(self, root):
 # recursive
 def preorder(root):
     output =[]
+    # perform depth first search on the root and modifies the output stack
+    dfs(root, output)
     
-    def dfs(root, output):
+    # return the output of all the nodes.
+    return output
+
+def dfs(root, output):
         # If root is none return 
         if root is None: return
 
@@ -45,12 +50,4 @@ def preorder(root):
         # Then add all the children to the output
         for child in root.children:
             dfs(child, output)
-
-    # perform depth first search on the root and get the output stack
-    dfs(root, output)
-    
-    # return the output of all the nodes.
-    return output
-
-
     
