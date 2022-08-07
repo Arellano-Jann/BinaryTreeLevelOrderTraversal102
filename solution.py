@@ -37,17 +37,16 @@ def preorder(root):
     
     def dfs(root, output):
         # If root is none return 
-        if root is None:
-            return
+        if root is None: return
 
         # for preorder we first add the root val
         output.append(root.val)
 
         # Then add all the children to the output
         for child in root.children:
-        dfs(child, output)
+            dfs(child, output)
 
-    # perform dfs on the root and get the output stack
+    # perform depth first search on the root and get the output stack
     dfs(root, output)
     
     # return the output of all the nodes.
