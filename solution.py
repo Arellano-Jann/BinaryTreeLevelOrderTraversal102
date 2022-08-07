@@ -45,7 +45,7 @@ def preorder(root):
 
         # Then add all the children to the output
         for child in root.children:
-        self.dfs(child, output)
+        dfs(child, output)
 
     # perform dfs on the root and get the output stack
     dfs(root, output)
