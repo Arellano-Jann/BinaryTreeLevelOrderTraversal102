@@ -1,20 +1,35 @@
-from collections import Counter
-def longestPalindrome(self, s: str) -> int:
-    count = Counter(s)
-    num = 0
-    for x in count.values():
-        num += x // 2 * 2
-        if x % 2 == 1 and num % 2 == 0: # second is to check if there is a unique center yet
-            num += 1
-    return num
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
 
-# set solution
-def longestPalindrome(self, s: str) -> int:
-    hash = set()
-    for c in s:
-        if c not in hash:
-            hash.add(c)
-        else:
-            hash.remove(c)
-    # len(hash) is the number of the odd letters
-    return len(s) - len(hash) + 1 if len(hash) > 0 else len(s) # if there is odd characters, s - num_odd + 1.
+
+def preorder(self, root):
+    """
+    :type root: Node
+    :rtype: List[int]
+    """
+    if root is None:
+        return []
+    
+    stack = [root]
+    output = []
+    
+    # Till there is element in stack the loop runs.
+    while stack:
+        
+        #pop the last element from the stack and store it into temp.
+        temp = stack.pop()
+        
+        # append. the value of temp to output
+        output.append(temp.val)
+        
+        #add the children of the temp into the stack in reverse order.
+        # children of 1 = [3,2,4], if not reveresed then 4 will be popped out first from the stack.
+        # if reversed then stack = [4,2,3]. Here 3 will pop out first.
+        # This continues till the stack is empty.
+        stack.extend(temp.children[::-1])
+    
+    #return the output
+    return output
